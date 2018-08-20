@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="93339" started-at="2018-08-20T16:56:08Z" finished-at="2018-08-20T16:57:42Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="93339" started-at="2018-08-20T16:56:08Z" finished-at="2018-08-20T16:57:42Z">
+      <class name="cp.CasosDePrueba">
+        <test-method status="PASS" signature="ejecutarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="ejecutarNavegador" is-config="true" duration-ms="10630" started-at="2018-08-20T16:56:08Z" finished-at="2018-08-20T16:56:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ejecutarNavegador -->
+        <test-method status="PASS" signature="caso1()[pri:1, instance:cp.CasosDePrueba@6d4b1c02]" name="caso1" duration-ms="13896" started-at="2018-08-20T16:56:19Z" finished-at="2018-08-20T16:56:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- caso1 -->
+        <test-method status="PASS" signature="cerrarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="cerrarNavegador" is-config="true" duration-ms="2372" started-at="2018-08-20T16:56:33Z" finished-at="2018-08-20T16:56:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarNavegador -->
+        <test-method status="PASS" signature="ejecutarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="ejecutarNavegador" is-config="true" duration-ms="9166" started-at="2018-08-20T16:56:35Z" finished-at="2018-08-20T16:56:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ejecutarNavegador -->
+        <test-method status="PASS" signature="caso2()[pri:2, instance:cp.CasosDePrueba@6d4b1c02]" name="caso2" duration-ms="26931" started-at="2018-08-20T16:56:45Z" finished-at="2018-08-20T16:57:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- caso2 -->
+        <test-method status="PASS" signature="cerrarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="cerrarNavegador" is-config="true" duration-ms="2109" started-at="2018-08-20T16:57:11Z" finished-at="2018-08-20T16:57:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarNavegador -->
+        <test-method status="PASS" signature="ejecutarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="ejecutarNavegador" is-config="true" duration-ms="10574" started-at="2018-08-20T16:57:14Z" finished-at="2018-08-20T16:57:24Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ejecutarNavegador -->
+        <test-method status="PASS" signature="caso3()[pri:3, instance:cp.CasosDePrueba@6d4b1c02]" name="caso3" duration-ms="16948" started-at="2018-08-20T16:57:24Z" finished-at="2018-08-20T16:57:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- caso3 -->
+        <test-method status="PASS" signature="cerrarNavegador()[pri:0, instance:cp.CasosDePrueba@6d4b1c02]" name="cerrarNavegador" is-config="true" duration-ms="686" started-at="2018-08-20T16:57:41Z" finished-at="2018-08-20T16:57:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cerrarNavegador -->
+      </class> <!-- cp.CasosDePrueba -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
