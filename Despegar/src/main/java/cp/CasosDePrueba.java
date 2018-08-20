@@ -31,7 +31,7 @@ public class CasosDePrueba {
 
 	@BeforeMethod
 	public void ejecutarNavegador() {
-
+		
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		ChromeOptions op = new ChromeOptions();
 		op.addArguments("--start-maximized");
@@ -100,9 +100,13 @@ public class CasosDePrueba {
 		// Funcion para buscar vuelo
 		buscarVuelo(origen, destino, dia_p, mes_p, ano_p, dia_r, mes_r, ano_r, driver);
 
+		// Esperar a que este elemento aparezca asi se da tiempo para que carguen completos los resultados de la primera pestaña
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='toolbox-tabs-container results-cluster-container -show']")));
+		
 		// Hago un listado con los precios que se despliegan en la primera pestaña de resultados
 		List<WebElement> precios = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@class='fare main-fare-big']//span[@class='amount price-amount']")));
-
+		System.out.println("Cantidad de vuelos encontrados en primera pestaña: " + precios.size());
+		
 		// Defino un arreglo de enteros del tamaño de la cantidad de precios obtenidos en la pestaña
 		int[] precios_enteros = new int[precios.size()];
 
@@ -120,16 +124,16 @@ public class CasosDePrueba {
 
 		// A través de este loop se determina el precio mayor. Una vez determinado se almacena su indice
 		// en la variable indice_precio_mayor
-		for (int i = 0; i < precios_enteros.length-1; i++) {
-			//System.out.println("Precio " + (i+1) + ": " + precios_enteros[i]);
+		for (int i = 0; i < precios_enteros.length; i++) {
+			System.out.println("Precio " + (i+1) + ": " + precios_enteros[i]);
 			if(precio_mayor<precios_enteros[i]) {
 				indice_precio_mayor = i;
 				precio_mayor = precios_enteros[i];
 
 			}			
 		}
-		//System.out.println("Precio mayor: " + precios.get(indice_precio_mayor).getText());
-		//System.out.println("Indice del precio mayor: "+indice_precio_mayor);
+		System.out.println("Precio mayor: " + precios.get(indice_precio_mayor).getText());
+		System.out.println("Indice del precio mayor: "+indice_precio_mayor);
 
 		// Se hace clic sobre el boton seleccionar
 		driver.findElements(By.xpath("//*[@class='fare-couchmark-tooltip fare-box-container product-SEARCH ']//*[@class='btn-text' and text()='Seleccionar']")).get(indice_precio_mayor).click();
@@ -169,10 +173,13 @@ public class CasosDePrueba {
 		// Hago clic sobre el campo de fecha de entrada
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='input-tag sbox-checkin-date -sbox-3-no-radius-right' and @placeholder='Entrada']"))).click();
 
-		// Obtener fecha del sistema
+		// Creo un objeto Calendar inicializado con la fecha actual del sistema
 		Calendar fecha_sistema = Calendar.getInstance();
+		
+		// Se añaden 10 dias a la fecha actual
 		fecha_sistema.add(Calendar.DATE, 10);
-
+		
+		// Se obtienen los datos necesarios para localizar los elementos correspondientes a la fecha de entrada al alojamiento
 		String dia_entrada = String.valueOf(fecha_sistema.get(Calendar.DATE));
 		String mes_entrada = StringUtils.leftPad(String.valueOf(fecha_sistema.get(Calendar.MONTH)+1), 2, '0');
 		String ano_entrada = String.valueOf(fecha_sistema.get(Calendar.YEAR));
@@ -180,9 +187,11 @@ public class CasosDePrueba {
 		// Selecciono el dia de entrada	
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='_dpmg2--wrapper _dpmg2--roundtrip _dpmg2--show-info _dpmg2--show' and @data-range='start']"
 				+ "//*[@data-month='"+ano_entrada+"-"+mes_entrada+"']//*[@class='_dpmg2--dates']//span[text()='"+dia_entrada+"']"))).click();
-
+		
+		// Se añaden 3 días a la fecha de entrada
 		fecha_sistema.add(Calendar.DATE, 3);
 
+		// Se obtienen los datos necesarios para localizar los elementos correspondientes a la fecha de salida al alojamiento
 		String dia_salida = String.valueOf(fecha_sistema.get(Calendar.DATE));
 		String mes_salida = StringUtils.leftPad(String.valueOf(fecha_sistema.get(Calendar.MONTH)+1), 2, '0');
 		String ano_salida = String.valueOf(fecha_sistema.get(Calendar.YEAR));
@@ -217,6 +226,9 @@ public class CasosDePrueba {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='dropdown-item-container hf-checkbox-container analytics']//input[@type='checkbox' and @checked='checked']")));
 
 		// Defino un objeto select para ordenar los resultados de menor a mayor precio
+		// Esta operacion se realiza dentro de un try-catch debido a que durante el refrescamiento de los resultados cuando
+		// se selecciona el filtrado por 5 estrellas, un elemento se superpone a resto del contenido mostrado en la pagina,
+		// y ocasiona una StaleElementReferenceException
 		try {
 			Select ordenar = new Select(wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='sorting']"))));
 			ordenar.selectByVisibleText("Precio: menor a mayor");
@@ -229,7 +241,11 @@ public class CasosDePrueba {
 
 		// Espero a que la opcion seleccionada es Precio: menor a mayor
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='select-tag trackable analytics hf-order-by ha-orderByCombo']//option[text()='Precio: menor a mayor']")));
+		
+		// Este elemento aparece mientras se actualizan los resultados producto del ordenamiento de menor a mayor con respecto al precio
+		// se utiliza este comando para esperar que desaparezca y proseguir con los demas pasos del caso de prueba
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='fullLoader' and @class='hf-updating -show-updating']")));
+		
 		// Extraigo el nombre de la opcion con menor precio para confirmar la aparicion de la nueva pagina
 		String nombre_hotel = "";
 		try {
