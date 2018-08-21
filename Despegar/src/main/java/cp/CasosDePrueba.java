@@ -170,6 +170,9 @@ public class CasosDePrueba {
 		// Selecciono la primera sugerencia del listado
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='ac-group-items']//*[@class='item -active']"))).click();
 
+		// Debo cerciorarme que el listado de sugerencias de ciudades desaparezca antes de hacer clic en la fecha de entrada
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@class='ac-group-items']//*[@class='item -active']")));
+		
 		// Hago clic sobre el campo de fecha de entrada
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@class='input-tag sbox-checkin-date -sbox-3-no-radius-right' and @placeholder='Entrada']"))).click();
 
