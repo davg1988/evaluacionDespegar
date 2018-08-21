@@ -36,7 +36,7 @@ public class CasosDePrueba {
 		ChromeOptions op = new ChromeOptions();
 		op.addArguments("--start-maximized");
 		driver = new ChromeDriver(op);
-		wait = new WebDriverWait(driver, 20);
+		wait = new WebDriverWait(driver, 30);
 		driver.get("https://www.despegar.com.ar/");
 	}
 
