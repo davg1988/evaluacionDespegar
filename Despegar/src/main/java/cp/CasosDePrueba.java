@@ -63,7 +63,7 @@ public class CasosDePrueba {
 		String ano_r = sh.getCell(3, 5).getContents();
 
 		// Espero a que aparezca el pop up y lo cierro
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
 
 		// Funcion para buscar vuelo
 		buscarVuelo(origen, destino, dia_p, mes_p, ano_p, dia_r, mes_r, ano_r, driver);
@@ -81,7 +81,7 @@ public class CasosDePrueba {
 		Sheet sh = wb.getSheet("Caso 2");
 
 		// Espero a que aparezca el pop up y lo cierro
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
 
 		// Parametros
 		String origen = sh.getCell(1, 0).getContents();
@@ -159,7 +159,7 @@ public class CasosDePrueba {
 	public void caso3() {
 
 		// Espero a que aparezca el pop up y lo cierro
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='as-login-modal-overlay social-popups-social-login']//*[@class='as-login-close as-login-icon-close-circled']"))).click();
 
 		// Clic en icono de alojamiento
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@title='Alojamientos']"))).click();
